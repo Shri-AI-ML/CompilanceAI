@@ -1,0 +1,8 @@
+{
+  "venvPath": "e:/COMPLIANCEOS AI/backend",
+  "venv": ".venv",
+  "extraPaths": [
+    "e:/COMPLIANCEOS AI/backend"
+  ],
+  "typeCheckingMode": "basic"
+}

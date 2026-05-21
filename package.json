@@ -1,0 +1,17 @@
+{
+  "name": "complianceos-ai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ComplianceOS AI - Enterprise AI-Native Compliance Workflow Platform",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "build:frontend": "pnpm --filter frontend build",
+    "start:frontend": "pnpm --filter frontend start",
+    "lint:frontend": "pnpm --filter frontend lint",
+    "dev:backend": "cd backend && .venv\\Scripts\\activate && uvicorn app.main:app --reload",
+    "test:backend": "cd backend && .venv\\Scripts\\activate && pytest"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
