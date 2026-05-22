@@ -9,9 +9,20 @@
     "start:frontend": "pnpm --filter frontend start",
     "lint:frontend": "pnpm --filter frontend lint",
     "dev:backend": "cd backend && .venv\\Scripts\\activate && uvicorn app.main:app --reload",
-    "test:backend": "cd backend && .venv\\Scripts\\activate && pytest"
+    "test:backend": "cd backend && .venv\\Scripts\\activate && pytest",
+    "dev": "concurrently -k -n \"frontend,backend\" -c \"cyan,magenta\" \"pnpm dev:frontend\" \"pnpm dev:backend\"",
+    "setup": "pnpm install && cd backend && python -m venv .venv && .venv\\Scripts\\pip install -r requirements.txt",
+    "migrate": "cd backend && .venv\\Scripts\\alembic upgrade head",
+    "seed": "cd backend && .venv\\Scripts\\python app/scripts/seed.py",
+    "reset-db": "cd backend && .venv\\Scripts\\python app/scripts/reset_db.py"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "prettier": "^3.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@clerk/shared"
+    ]
   }
 }

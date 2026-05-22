@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Dict
 
 
 class HealthCheck(BaseModel):
@@ -7,3 +8,6 @@ class HealthCheck(BaseModel):
     environment: str
     database: str
     redis: str
+    qdrant: str
+    services: Dict[str, str]
+

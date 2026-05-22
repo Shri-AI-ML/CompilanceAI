@@ -25,8 +25,8 @@ export default function Home() {
             <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white" asChild>
               <Link href="http://localhost:8000/docs" target="_blank">View API Docs</Link>
             </Button>
-            <Button size="sm" className="bg-white text-zinc-950 hover:bg-zinc-200">
-              Contact Sales
+            <Button size="sm" className="bg-white text-zinc-950 hover:bg-zinc-200" asChild>
+              <Link href="/login">Sign In</Link>
             </Button>
           </div>
         </div>
@@ -58,9 +58,11 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="bg-white text-zinc-950 hover:bg-zinc-200 group">
-                Request Pilot
-                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <Button size="lg" className="bg-white text-zinc-950 hover:bg-zinc-200 group" asChild>
+                <Link href="/signup">
+                  Get Started
+                  <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </Button>
               <Button variant="outline" size="lg" className="border-zinc-800 bg-zinc-900/20 text-zinc-300 hover:bg-zinc-900 hover:text-white" asChild>
                 <Link href="http://localhost:8000/docs" target="_blank">

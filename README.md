@@ -31,7 +31,7 @@ ComplianceOS AI is an enterprise AI-native compliance workflow platform. This mo
 ### Prerequisites
 
 - Node.js (v20+ recommended)
-- `pnpm` installed globally
+- `pnpm` (v9+ or newer) installed globally
 - Python 3.11+
 - Docker & Docker Compose
 
@@ -49,51 +49,53 @@ ComplianceOS AI is an enterprise AI-native compliance workflow platform. This mo
    copy backend\.env.example backend\.env
    ```
 
-3. **Start Backing Services**:
-   ```bash
-   docker compose up -d
-   ```
+### Unified Onboarding & Developer Commands
 
-### Backend Setup
+We provide a `Makefile` and `package.json` scripts for streamlined onboarding.
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a Python virtual environment:
-   ```bash
-   python -m venv .venv
-   # Windows:
-   .venv\Scripts\activate
-   # macOS/Linux:
-   source .venv/bin/activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run tests:
-   ```bash
-   pytest
-   ```
-5. Run the dev server:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
+#### 1. Setup Workspace (One-Command Onboarding)
+Install node modules, create the backend Python virtual environment, and install dependencies:
+```bash
+make setup
+# OR using pnpm:
+pnpm run setup
+```
 
-### Frontend Setup
+#### 2. Run Local Development (One-Command Startup)
+Spin up the Docker backing services (Postgres, Redis, Qdrant) and start the backend and frontend servers concurrently:
+```bash
+make run-dev
+# OR using pnpm:
+pnpm run dev
+```
 
-1. Install global `pnpm` if you don't have it:
-   ```bash
-   npm install -g pnpm
-   ```
-2. Install frontend dependencies from the root directory:
-   ```bash
-   pnpm install
-   ```
-3. Run the development server:
-   ```bash
-   pnpm dev:frontend
-   ```
+#### 3. Database Management Helper Commands
+We provide safe utilities to manage development databases:
+
+- **Run Alembic Migrations**:
+  ```bash
+  make migrate
+  # OR using pnpm:
+  pnpm run migrate
+  ```
+
+- **Seed Development Data**:
+  Inserts realistic, enterprise-grade mock data (users, organizations, memberships, and detailed compliance audit logs):
+  ```bash
+  make seed
+  # OR using pnpm:
+  pnpm run seed
+  ```
+
+- **Reset Development Database**:
+  Destroys the current local schema cascade, applies fresh Alembic migrations, and runs the seed script. **Features strict development safeguards to prevent execution in production settings**:
+  ```bash
+  make reset-db
+  # OR using pnpm:
+  pnpm run reset-db
+  ```
+
+---
 
 The frontend will be available at `http://localhost:3000` and the backend Swagger documentation will be available at `http://localhost:8000/docs`.
+
